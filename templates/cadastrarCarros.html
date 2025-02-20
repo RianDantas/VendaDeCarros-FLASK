@@ -8,6 +8,20 @@
 <body>
     <h1>Estou no cadastrar carros</h1>
 
+    <form method="post" action="/salvarCarros">
+        <p>Modelo:</p>
+        <input type="text" name="modelo">
+        <p>Marca:</p>
+        <input type="text" name="marca">
+        <p>Ano de fabricação:</p>
+        <input type="text" name="fabricacao">
+        <p>Quilometragem:</p>
+        <input type="number" name="quilometragem">
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p>{{modelo}}</p>
+
 
     <a href="/">Sair</a>
 </body>

@@ -7,5 +7,20 @@
 </head>
 <body>
     <h1>Estou no cadastrar Clientes</h1>
+
+    <form method="post" action="/salvarClientes">
+        <p>Nome:</p>
+        <input type="text" name="nome">
+        <p>Telefone:</p>
+        <input type="text" name="telefone">
+        <p>Email:</p>
+        <input type="text" name="email">
+       
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p>{{modelo}}</p>
+    
+    <a href="/">Sair</a>
 </body>
 </html>
