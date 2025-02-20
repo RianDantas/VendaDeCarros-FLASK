@@ -19,7 +19,7 @@ criar_tabelaClientes()
 def criar_tabelaCarros():
     conn = sqlite.connect('bancoDB.sqlite')
     cursor = conn.cursor()
-    cursor.execute("""
+    cursor.execute('''
     CREATE TABLE IF NOT EXISTS carros(
     id_carro INTEGER PRIMARY KEY AUTOINCREMENT,
     modelo TEXT NOT NULL,
@@ -27,7 +27,7 @@ def criar_tabelaCarros():
     ano TEXT NOT NULL,
     quilometragem TEXT NOT NULL
     )
-    """)
+    ''')
     conn.commit()
     conn.close()
     
@@ -39,8 +39,8 @@ def criar_tabelaVendas():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS vendas(
     id_venda INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_carro INTEGER FOREIGN KEY,
-    id_cliente INTEGER FOREIGN KEY,
+    id_carro INTEGER NOT NULL,
+    id_cliente INTEGER NOT NULL,
     FOREIGN KEY (id_carro) REFERENCES carros(id_carro),
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
     )
@@ -54,7 +54,7 @@ def inserirClientes(nome, contato, email):
     conn = sqlite.connect('bancoDB.sqlite')
     cursor = conn.cursor()
     cursor.execute("""
-        INSERT INTO usuarios (nome, contato, email) VALUES (?, ?, ?)
+        INSERT INTO clientes (nome, contato, email) VALUES (?, ?, ?)
     """, (nome, contato, email))
     conn.commit()
     conn.close()
@@ -63,15 +63,15 @@ def inserirCarros(modelo, marca, ano, quilometragem):
     conn = sqlite.connect('bancoDB.sqlite')
     cursor = conn.cursor()
     cursor.execute("""
-        INSERT INTO usuarios (modelo, marca, ano, quilometragem) VALUES (?, ?, ?)
+        INSERT INTO carros (modelo, marca, ano, quilometragem) VALUES (?, ?, ?, ?)
     """, (modelo, marca, ano, quilometragem))
     conn.commit()
     conn.close()
 
 def listarCarros():
-    conn = sqlite.connect('dadosDB.sqlite')
+    conn = sqlite.connect('bancoDB.sqlite')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM carros order by id desc')
+    cursor.execute('SELECT * FROM carros')
     bancoDB = cursor.fetchall()
     carros= []
 

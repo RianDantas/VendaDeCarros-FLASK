@@ -2,6 +2,8 @@ from flask import *
 
 app = Flask(__name__)
 
+import bancoDB
+
 
 @app.route("/")
 def home():
@@ -24,10 +26,12 @@ def realizarVendas():
 def salvarCarros():
     modelo = request.form.get("modelo")
     marca = request.form.get("marca")
-    fabricacao = request.form.get("fabricacao")
+    ano = request.form.get("fabricacao")
     quilometragem = str(request.form.get("quilometragem"))
 
-    mensagem = "Marca: " + marca + "," + " Modelo: " + modelo + "," + " ano de fabricação: " + fabricacao + ", " + "Quilometragem: " + quilometragem
+    bancoDB.inserirCarros(modelo, marca, ano, quilometragem)
+
+    mensagem = "Carro cadastrado com sucesso!"
     return render_template("cadastrarCarros.html", modelo = mensagem)
 
 @app.route("/salvarClientes", methods=['POST'])
@@ -40,7 +44,11 @@ def salvarClientes():
     return render_template("cadastrarClientes.html", modelo = mensagem)
 
 
+@app.route("/carrosDisponiveis")
+def carrosDisponiveis():
+    carros = bancoDB.listarCarros()
 
+    return render_template("carrosDisponiveis.html", carros = carros)
 
 
 app.run(debug=True)
