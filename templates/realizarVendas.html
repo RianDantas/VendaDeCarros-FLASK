@@ -16,6 +16,7 @@
     <table style="width:100%">
     
     <tr>
+        <th>Id</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Ano</th>
@@ -23,6 +24,7 @@
     </tr>
     {% for c in carros %}
     <tr>
+        <td>{{c[0]}}</td>
         <td>{{c[2]}}</td>
         <td>{{c[1]}}</td>
         <td>{{c[3]}}</td>
@@ -31,6 +33,26 @@
     
     {% endfor %}
     </table>
+
+    <h3>Cliente</h3>
+
+    <form method="post" action="/salvarVenda">
+        <p>Nome:</p>
+        <input type="text" name="nome">
+        <p>Telefone:</p>
+        <input type="text" name="telefone">
+        <p>Email:</p>
+        <input type="text" name="email">
+
+        <p>Id do carro:</p>
+        <input type="text" name="id_carro">
+
+
+       
+        <button type="submit">Cadastrar</button>
+    </form>
+
+   
     
 
    

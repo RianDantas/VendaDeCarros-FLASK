@@ -11,22 +11,26 @@
     }
     </style>
 <body>
-    <h1>Estou no Realizar vendas</h1>
+    <h1>Carros Vendidos</h1>
 
     <table style="width:100%">
     
     <tr>
+        <th>Id</th>
         <th>Marca</th>
         <th>Modelo</th>
+        <th>Preço (R$)</th>
         <th>Ano</th>
-        <th>Quilometragem</th>
+        <th>Quilometragem (KM)</th>
     </tr>
     {% for c in carros %}
     <tr>
+        <td>{{c[0]}}</td>
         <td>{{c[2]}}</td>
         <td>{{c[1]}}</td>
         <td>{{c[3]}}</td>
         <td>{{c[4]}}</td>
+        <td>{{c[5]}} </td>
     </tr>
     
     {% endfor %}
